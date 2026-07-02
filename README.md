@@ -6,12 +6,12 @@
 
 Audit agent state schemas for persistence, reset, and user isolation risks. It solves review drift by turning plain-text plans into deterministic CI-friendly findings.
 
-## Input Contract 42
+## Input Contract
 
 Accepts agent state schema. The reader supports plain text, JSON, JSONL, and CSV so the
 tool can fit into scripts, CI jobs, and review exports.
 
-## CLI Walkthrough 42
+## CLI Walkthrough
 
 ```bash
 python -m pip install -e ".[dev]"
@@ -20,7 +20,7 @@ agent-state-check examples/sample.txt --json --fail-on medium
 python -m agent_state_check --help
 ```
 
-## Rule Surface 42
+## Rule Surface
 
 | Rule | Severity | Meaning |
 |---|---:|---|
@@ -28,7 +28,7 @@ python -m agent_state_check --help
 | `missing-reset` | medium | reset behavior missing |
 | `missing-isolation` | low | user isolation unclear |
 
-## Validation Notes 42
+## Validation Notes
 
 ```bash
 ruff check .
