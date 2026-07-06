@@ -2,35 +2,32 @@
 
 Audit agent state schemas for persistence, reset, and user isolation risks.
 
-## First impression
-
 ![Agent State Check cover](assets/readme-cover.svg)
 
-When this tool reports something, I want the finding to be boringly explicit: what matched, how severe it is, and what a reviewer should clean up.
+## Finding map
 
-## Tripwires
+![Workflow diagram](assets/readme-diagram.svg)
 
-- `persistent-state` (high): persistent state detected. Fix: review retention and deletion.
-- `missing-reset` (medium): reset behavior missing. Fix: add state reset path.
-- `missing-isolation` (low): user isolation unclear. Fix: scope state by user or tenant.
+## Signals
 
-## Runbook
+- `persistent-state` - persistent state detected (high); review retention and deletion.
+- `missing-reset` - reset behavior missing (medium); add state reset path.
+- `missing-isolation` - user isolation unclear (low); scope state by user or tenant.
+
+## Repo landmarks
+
+```text
+.github/        CI workflow
+examples/       sample inputs
+src/            package source
+tests/          test coverage
+```
+
+## Command path
 
 ```bash
 git clone https://github.com/mertefekurt/agent-state-check.git
 cd agent-state-check
-python -m venv .venv
-source .venv/bin/activate
 python -m pip install -e ".[dev]"
-```
-
-Then:
-
-```bash
 agent-state-check examples/sample.txt
-agent-state-check examples/sample.txt --json
 ```
-
-## Development note
-
-The policy lives in `rules.py`; parsing and rendering stay separate so the rule list is easy to audit.
